@@ -2,9 +2,12 @@ import React, { cache } from "react";
 import { Post } from "@/types/types";
 
 const getPostList = async (id: number) => {
-  const response = await fetch(`http://localhost:3000/api/posts/${id}`, {
-    cache: "no-store",
-  });
+  const response = await fetch(
+    `https://first-next-app-seven-gamma.vercel.app/api/posts/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
   const data = await response.json();
   console.log(data);
   return data;
