@@ -1,12 +1,12 @@
 export type Post = {
-  id: number;
+  id: string;
   slug?: string;
   title?: string;
   content?: string;
 };
 
 export type PostPageProps = {
-  params: { id: number };
+  params: { id: string };
 };
 export type User = {
   username: string;

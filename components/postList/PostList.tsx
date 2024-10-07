@@ -3,12 +3,9 @@ import { Post } from "@/types/types";
 import Link from "next/link";
 
 const getPostList = async (): Promise<Post[]> => {
-  const res = await fetch(
-    "https://first-next-app-seven-gamma.vercel.app/api/posts",
-    {
-      cache: "no-store",
-    }
-  );
+  const res = await fetch("http://localhost:3000/api/posts", {
+    cache: "no-store",
+  });
   const data = await res.json();
   return data;
 };

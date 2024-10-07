@@ -1,23 +1,25 @@
 import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export async function GET(req: Request) {
-  const postList = [
-    {
-      id: 1,
-      slug: "hello-world",
-      content: "Welcome to learning Next.js!",
-    },
-    {
-      id: 2,
-      slug: "installation",
-      content:
-        "You can install Next.js by following the steps on the official website.",
-    },
-    {
-      id: 3,
-      slug: "hello-world",
-      content: "Welcome to learning Next.js!",
-    },
-  ];
+  const postList = await prisma.post.findMany();
   return NextResponse.json(postList);
+}
+export async function POST(req: Request) {
+  const { title, content } = await req.json();
+  if (!title || !content) {
+    return NextResponse.json(
+      { error: "Title and content are required" },
+      { status: 400 }
+    );
+  }
+  const newPost = await prisma.post.create({
+    data: {
+      title,
+      content,
+    },
+  });
+  return NextResponse.json(newPost);
 }
