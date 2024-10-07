@@ -8,7 +8,8 @@ export async function GET(req: Request) {
   return NextResponse.json(postList);
 }
 export async function POST(req: Request) {
-  const { title, content } = await req.json();
+  const { title, content }: { title: string; content: string } =
+    await req.json();
   if (!title || !content) {
     return NextResponse.json(
       { error: "Title and content are required" },
