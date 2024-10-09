@@ -11,9 +11,9 @@ export async function GET() {
 export async function POST(request: Request) {
   const json = await request.json();
 
-  const { title, content, author } = json;
+  const { title, content } = json;
 
-  if (!title || !content || !author) {
+  if (!title || !content) {
     return new NextResponse("Missing required fields", { status: 400 });
   }
 
@@ -21,7 +21,6 @@ export async function POST(request: Request) {
     data: {
       title,
       content,
-      authorId: author.id, // Assuming 'author' is an object with an 'id' field
     },
   });
 
