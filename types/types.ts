@@ -3,6 +3,7 @@ export type Post = {
   slug?: string;
   title?: string;
   content?: string;
+  author?: string;
 };
 
 export type PostPageProps = {
